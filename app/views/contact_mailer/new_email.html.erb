@@ -1,5 +1,8 @@
 <body>
-  <h1>You have a new email from, <%= @mail.name %></h1>
+  <h1>You have a new notification from <%= @mail.source %></h1>
+  <p>
+    <b>Name: </b> <%= @mail.name %>
+  </p>
   <p>
     <b>Email: </b> <%= @mail.email %>
   </p>

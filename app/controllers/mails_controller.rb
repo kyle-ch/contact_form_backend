@@ -23,8 +23,6 @@ class MailsController < ApplicationController
     #   render json: @mail.errors, status: :unprocessable_entity
     # end
 
-    # @mail = Mail.new(params[:mail])
-
     ContactMailer.with(mail: @mail).new_email.deliver_now
   end
 
