@@ -5,6 +5,6 @@ class ContactMailer < ApplicationMailer
   def new_email
     @mail = params[:mail]
     puts "EMAIL SENT TO: #{ENV["RECIPIENT_EMAIL"]}"
-    mail(to: ENV["RECIPIENT_EMAIL"], subject: 'You have a new notification.')
+    mail(to: ENV["RECIPIENT_EMAIL"], subject: "You have a new notification from #{@mail.source} - #{@mail.name} - #{@mail.time}")
   end
 end
