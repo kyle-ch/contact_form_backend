@@ -18,6 +18,7 @@ Example: ```curl --header "Content-Type: application/json" \
 |RECIPIENT_EMAIL | the email address you wish to receive notification emails at|
 |SENDER_EMAIL | the email address you wish to have the notification emails sent from|
 |SENDER_PASSWORD | the password for SENDER_EMAIL's email account ([Note](https://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration-for-gmail) for Gmail Users)|
+|API_KEY| a key that will allow requests to be processed|
 
 # How to Use
 * The `/mails` endpoint accepts POST requests with a JSON containing a single `mail` object.
@@ -27,7 +28,8 @@ Example: ```curl --header "Content-Type: application/json" \
       "source":"Where this notification is from",
       "name":"Name of person who created this notification",
       "body":"Message of this notification",
-      "time":"Time the notification was created"
+      "time":"Time the notification was created",
+      "key":"Must be the same as specified API_KEY"
       }
 }
 ```

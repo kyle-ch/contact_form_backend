@@ -16,14 +16,12 @@ class MailsController < ApplicationController
   # POST /mails
   def create
     @mail = ContactMail.new(mail_params)
-
-    # if @mail.save
-    #   render json: @mail, status: :created, location: @mail
-    # else
-    #   render json: @mail.errors, status: :unprocessable_entity
-    # end
-
-    ContactMailer.with(mail: @mail).new_email.deliver_now
+    if @mail.key == ENV["API_KEY"]
+      ContactMailer.with(mail: @mail).new_email.deliver_now
+      render json: @mail, status: :created
+    else
+      render json: @mail.errors, status: :unprocessable_entity
+    end
   end
 
   # PATCH/PUT /mails/1
@@ -48,6 +46,6 @@ class MailsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def mail_params
-      params.require(:mail).permit(:body, :email, :time, :name, :source)
+      params.require(:mail).permit(:body, :email, :time, :name, :source, :key)
     end
 end
