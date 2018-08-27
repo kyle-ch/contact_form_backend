@@ -15,6 +15,7 @@ class MailsController < ApplicationController
 
   # POST /mails
   def create
+    puts params
     @mail = ContactMail.new(mail_params)
     if @mail.key == ENV["API_KEY"]
       ContactMailer.with(mail: @mail).new_email.deliver_now
